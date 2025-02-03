@@ -189,6 +189,21 @@
             font-size: 12.0px;
             cursor: default;
         }
+
+        .non-pc-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            color: white;
+            font-size: 24px;
+        }
     </style>
 </head>
 
@@ -198,7 +213,7 @@
         <div class="loading-text">loading...</div>
     </div>
 
-    <div class="version-number">V1.5.2 内测版</div>
+    <div class="version-number">V1.5.4 内测版</div>
 
     <div class="search-container">
         <h1 onclick="copyToClipboard()">学术文献搜索</h1>
@@ -238,6 +253,36 @@
     </footer>
 
     <script>
+
+        (function identifyDevicePlatform() {
+            var os = function () {
+                var ua = navigator.userAgent,
+                    isWindowsPhone = /(?:Windows Phone)/.test(ua),
+                    isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
+                    isAndroid = /(?:Android)/.test(ua),
+                    isFireFox = /(?:Firefox)/.test(ua),
+                    isChrome = /(?:Chrome|CriOS)/.test(ua),
+                    isTablet = /(?:iPad|PlayBook)/.test(ua) || (isAndroid && !/(?:Mobile)/.test(ua)) ||
+                        (isFireFox && /(?:Tablet)/.test(ua)),
+                    isPhone = /(?:iPhone)/.test(ua) && !isTablet,
+                    isPc = !isPhone && !isAndroid && !isSymbian;
+                return {
+                    isTablet: isTablet,
+                    isPhone: isPhone,
+                    isAndroid: isAndroid,
+                    isPc: isPc
+                };
+            }();
+            console.log('os', os)
+            if (!os.isPc) {
+                const nonPcOverlay = document.createElement('div');
+                nonPcOverlay.className = 'non-pc-overlay';
+                nonPcOverlay.textContent = '请使用电脑浏览器访问本站！';
+                document.body.innerHTML = '';
+                document.body.appendChild(nonPcOverlay);
+                return;
+            }
+        })();
 
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
@@ -284,14 +329,14 @@
             e.preventDefault();
         });
 
-    function checkDevTools() {
-        const hasDevToolsOpen = window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160;
-        if (hasDevToolsOpen) {
+        function checkDevTools() {
+            const hasDevToolsOpen = window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160;
+            if (hasDevToolsOpen) {
                 window.location.href = 'error.html';
+            };
+            console.log('%c', devtools);
         };
-        console.log('%c', devtools);
-    };
-    setInterval(checkDevTools, 0.01);
+        setInterval(checkDevTools, 0.01);
 
     </script>
 
