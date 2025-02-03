@@ -278,7 +278,7 @@
 
     // 禁用 F12、Ctrl+Shift+I 和 Ctrl+Shift+C 快捷键
     document.addEventListener('keydown', function (e) {
-        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C'))) {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) || (e.ctrlKey && (e.key === 'u' || e.key === 'U'))) {
             e.preventDefault();
             window.location.href = 'error.html';
         }
