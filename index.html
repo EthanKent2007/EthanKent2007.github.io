@@ -290,24 +290,6 @@
             }
         });
 
-
-
-        ConsoleManager.onOpen = function() {
-            let target = "";
-            try {
-                window.open("about:blank", (target = "_self"));
-            } catch (err) {
-                let a = document.createElement("button");
-                a.onclick = function() {
-                    window.open("about:blank", (target = "_self"));
-                };
-                a.click();
-            }
-        };
-        ConsoleManager.onClose = function() {
-        };
-        ConsoleManager.init();
-    }
         
     </script>
 </body>
