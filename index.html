@@ -1,49 +1,52 @@
 <!DOCTYPE html>
-<html lang="zh - CN">
+<html lang="zh-CN">
+
 <head>
-    <meta charset="UTF - 8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="icon.png" type="image/x-icon">
-    <title>公告</title>
+    <title>维护中</title>
     <style>
         body {
-            user-select: none;
-            -webkit-user-select: none; 
-            -moz-user-select: none; 
-            -ms-user-select: none; 
-            font-family: Arial, sans - serif;
-            background-color: #121212; 
-            color: #ffffff; 
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             display: flex;
-            justify-content: center; 
-            min-height: 10vh; 
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            letter-spacing: 0em;
-            margin-top: 12%; 
         }
-        footer {
-            position: fixed;
-            bottom: 250px;
-            left: 0;
-            width: 100%;
-            background-color: transparent;
-            color: #808080;
-            text-align: left; 
-            font-size: 13px; 
-            padding: 0px 37%; 
-            cursor: default; 
+
+        .maintenance-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .estimated-time {
+            color: #f00;
+            font-weight: bold;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-<h1>公告：</h1>
-        鉴于本工作室近期对业务进行的一系列调整，<br>
-        本网站已永久性迁移至<a href="https://ethankent2007.github.io/tool.wenxian.search/" style="text-decoration: underline; color: #ffffff;">新页面</a>，<br>
-        对于由此给您造成的不便，我们深表歉意！ 
-        
-        <footer>
-        Copyright &copy 2023-2025 KentStudio. All rights reserved. 
-    </footer>
+    <div class="maintenance-container">
+        <h1>系统维护中</h1>
+        <p>很抱歉，我们的系统正在进行维护，给您带来不便，敬请谅解。</p>
+        <p class="estimated-time">预计维护时间：null</p>
+        <p>请稍后再访问，感谢您的耐心等待。</p>
+    </div>
 </body>
+
 </html>
