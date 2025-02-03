@@ -12,7 +12,7 @@
             -webkit-user-select: none; 
             -moz-user-select: none; 
             -ms-user-select: none; 
-            ser-select: none;
+            user-select: none;
             font-family: Arial, sans - serif;
             background-color: #121212; 
             color: #ffffff; 
@@ -198,7 +198,7 @@
         <div class="loading-text">loading...</div>
     </div>
 
-    <div class="version-number">V1.5.0 正式版</div>
+    <div class="version-number">V1.5.1 内测版</div>
 
     <div class="search-container">
         <h1 onclick="copyToClipboard()">学术文献搜索</h1>
@@ -237,60 +237,127 @@
         Copyright &copy 2023-2025 KentStudio. All rights reserved. 
     </footer>
 
-    <script>
+<script>
+    // 禁用右键菜单
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
 
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
+    // 页面加载完成后显示加载动画，1 秒后隐藏
+    window.addEventListener('load', function () {
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        loadingOverlay.style.display = 'flex';
+        setTimeout(function () {
+            loadingOverlay.style.display = 'none';
+        }, 1000);
+    });
 
-        window.addEventListener('load', function () {
-            const loadingOverlay = document.getElementById('loadingOverlay');
-
-            loadingOverlay.style.display = 'flex';
-
-            setTimeout(function () {
-                loadingOverlay.style.display = 'none';
-            }, 1000);
-        });
-
-
-        document.getElementById('searchForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const searchText = document.getElementById('searchInput').value;
-
-            if (searchText.trim() === "") {
-                alert("请输入搜索内容！");
-                return;
-            }
-
-            const selectedWebsite = document.querySelector('input[name="website"]:checked').value;
-            const newUrl = `https://cn.bing.com/search?q=site:${selectedWebsite} ${searchText}`;
-            window.open(newUrl, '_blank');
-        });
-
-        function copyToClipboard() {
-            const textToCopy = "https://ethankent2007.github.io/";
-            const el = document.createElement('textarea');
-            el.value = textToCopy;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            alert("已复制本站链接到剪切板！快去分享吧~");
+    // 处理搜索表单提交事件
+    document.getElementById('searchForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const searchText = document.getElementById('searchInput').value;
+        if (searchText.trim() === "") {
+            alert("请输入搜索内容！");
+            return;
         }
+        const selectedWebsite = document.querySelector('input[name="website"]:checked').value;
+        const newUrl = `https://cn.bing.com/search?q=site:${selectedWebsite} ${searchText}`;
+        window.open(newUrl, '_blank');
+    });
 
-        document.addEventListener('keydown', function (e) {
-            if (
-                e.key === 'F12' ||
-                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) ||
-                (e.ctrlKey && (e.key === 'u' || e.key === 'U'))
-            ) {
-                e.preventDefault();
-                window.location.href = 'error.html';
-            }
-        });
+    // 复制链接到剪贴板
+    async function copyToClipboard() {
+        const textToCopy = "https://ethankent2007.github.io/";
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+            alert("已复制本站链接到剪切板！快去分享吧~");
+        } catch (err) {
+            console.error('复制失败:', err);
+        }
+    }
 
-        
-    </script>
+    // 禁用 F12、Ctrl+Shift+I 和 Ctrl+Shift+C 快捷键
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C'))) {
+            e.preventDefault();
+            window.location.href = 'error.html';
+        }
+    });
+
+    // 禁用右键菜单
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    // 检测开发者工具是否打开
+    document.onkeydown = document.onkeyup = document.onkeypress = function (event) {
+        let userAgent = navigator.userAgent;
+        if (userAgent.indexOf("Firefox") > -1) {
+            let checkStatus;
+            let devtools = /./;
+            devtools.toString = function () {
+                checkStatus = "on";
+            };
+            setInterval(function () {
+                checkStatus = "off";
+                console.clear();
+                if (checkStatus === "on") {
+                    let target = "";
+                    try {
+                        window.open("about:blank", target = "_self");
+                    } catch (err) {
+                        let a = document.createElement("button");
+                        a.onclick = function () {
+                            window.open("about:blank", target = "_self");
+                        };
+                        a.click();
+                    }
+                }
+            }, 200);
+        } else {
+            let ConsoleManager = {
+                onOpen: function () {
+                    let target = "";
+                    try {
+                        window.open("about:blank", target = "_self");
+                    } catch (err) {
+                        let a = document.createElement("button");
+                        a.onclick = function () {
+                            window.open("about:blank", target = "_self");
+                        };
+                        a.click();
+                    }
+                },
+                onClose: function () {
+                },
+                init: function () {
+                    let self = this;
+                    let x = document.createElement("div");
+                    let isOpening = false;
+                    let isOpened = false;
+                    Object.defineProperty(x, "id", {
+                        get: function () {
+                            if (!isOpening) {
+                                self.onOpen();
+                                isOpening = true;
+                            }
+                            isOpened = true;
+                            return true;
+                        }
+                    });
+                    setInterval(function () {
+                        isOpened = false;
+                        if (!isOpened && isOpening) {
+                            self.onClose();
+                            isOpening = false;
+                        }
+                    }, 200);
+                }
+            };
+            ConsoleManager.init();
+        }
+    }; 
+</script>
+
 </body>
 </html>
