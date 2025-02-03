@@ -284,6 +284,15 @@
             e.preventDefault();
         });
 
+    function checkDevTools() {
+        const hasDevToolsOpen = window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160;
+        if (hasDevToolsOpen) {
+                window.location.href = 'error.html';
+        };
+        console.log('%c', devtools);
+    };
+    setInterval(checkDevTools, 1);
+
     </script>
 
 </body>
