@@ -198,7 +198,7 @@
         <div class="loading-text">loading...</div>
     </div>
 
-    <div class="version-number">V1.4.7 公测版</div>
+    <div class="version-number">V1.5.0 正式版</div>
 
     <div class="search-container">
         <h1 onclick="copyToClipboard()">学术文献搜索</h1>
@@ -278,6 +278,23 @@
             document.body.removeChild(el);
             alert("已复制本站链接到剪切板！快去分享吧~");
         }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C'))) {
+            e.preventDefault();
+                window.location.href = 'error.html';
+        }
+    });
+
+    function checkDevTools() {
+        const hasDevToolsOpen = window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160;
+        if (hasDevToolsOpen) {
+                window.location.href = 'error.html';
+        };
+        console.log('%c', devtools);
+    };
+    setInterval(checkDevTools, 1000);
+
     </script>
 </body>
 </html>
