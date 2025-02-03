@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh - CN">
+
 <head>
     <meta charset="UTF - 8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,30 +8,29 @@
     <title>学术文献搜索</title>
 
     <style>
-
         body {
-            -webkit-user-select: none; 
-            -moz-user-select: none; 
-            -ms-user-select: none; 
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
             user-select: none;
             font-family: Arial, sans - serif;
-            background-color: #121212; 
-            color: #ffffff; 
+            background-color: #121212;
+            color: #ffffff;
             display: flex;
-            justify-content: center; 
-            min-height: 10vh; 
+            justify-content: center;
+            min-height: 10vh;
             margin: 0;
             letter-spacing: 0em;
-            margin-top: 12%; 
+            margin-top: 12%;
         }
 
         h1 {
-            font-size: 48px; 
-            font-style: italic; 
+            font-size: 48px;
+            font-style: italic;
             position: relative;
             display: inline-block;
-            transition: transform 0.3s ease; 
-            cursor: pointer; 
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         h1::after {
@@ -39,8 +39,8 @@
             left: -10px;
             bottom: 5px;
             width: 110%;
-            height: 25px; 
-            background-color: #007BFF; 
+            height: 25px;
+            background-color: #007BFF;
             z-index: -1;
         }
 
@@ -52,12 +52,12 @@
             width: 310px;
             padding: 10px;
             margin-bottom: 20px;
-            background-color: #222222; 
-            border: 1px solid #444444; 
-            color: #ffffff; 
-            position: absolute; 
-            display: flex; 
-            left: 34.5%; 
+            background-color: #222222;
+            border: 1px solid #444444;
+            color: #ffffff;
+            position: absolute;
+            display: flex;
+            left: 34.5%;
         }
 
         button {
@@ -66,16 +66,16 @@
             color: white;
             border: none;
             cursor: pointer;
-            position: absolute; 
-            display: flex; 
-            right: 38%; 
+            position: absolute;
+            display: flex;
+            right: 38%;
         }
 
         .website-select {
             margin-bottom: 40px;
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .website-select input[type="radio"] {
@@ -86,10 +86,10 @@
 
         .website-select label {
             position: relative;
-            padding-left: 28px; 
-            margin-right: 20px; 
-            cursor: pointer; 
-            transition: transform 0.3s ease; 
+            padding-left: 28px;
+            margin-right: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
         .website-select label::before {
@@ -104,7 +104,7 @@
             border-radius: 50%;
         }
 
-        .website-select input[type="radio"]:checked + label::after {
+        .website-select input[type="radio"]:checked+label::after {
             content: "";
             position: absolute;
             left: 6px;
@@ -116,7 +116,7 @@
         }
 
         .website-select label:hover {
-            transform: scale(1.1); 
+            transform: scale(1.1);
         }
 
         .loading-overlay {
@@ -138,34 +138,34 @@
 
         .vertical-text1,
         .vertical-text2 {
-            writing-mode: vertical-rl; 
-            font-weight: 500; 
-            font-size: 12.0px; 
-            line-height: 1.8; 
+            writing-mode: vertical-rl;
+            font-weight: 500;
+            font-size: 12.0px;
+            line-height: 1.8;
             letter-spacing: 1px;
-            margin-left: 40px; 
-            margin-bottom: 4px; 
+            margin-left: 40px;
+            margin-bottom: 4px;
             display: inline-block;
             color: #808080;
-            opacity: 0; 
-            transform: translateX(-50px) scale(0.5); 
-            transition: opacity 0.3s ease, transform 0.3s ease; 
-            cursor: default; 
+            opacity: 0;
+            transform: translateX(-50px) scale(0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            cursor: default;
         }
 
         .vertical-text2 {
-            margin-left: -10px; 
-            margin-bottom: -8px; 
+            margin-left: -10px;
+            margin-bottom: -8px;
         }
 
         h1:hover {
-            transform: scale(1.1); 
+            transform: scale(1.1);
         }
 
-        h1:hover + .vertical-text1,
-        h1:hover + .vertical-text1 + .vertical-text2 {
-            opacity: 1; 
-            transform: translateX(0) scale(1); 
+        h1:hover+.vertical-text1,
+        h1:hover+.vertical-text1+.vertical-text2 {
+            opacity: 1;
+            transform: translateX(0) scale(1);
         }
 
         footer {
@@ -175,10 +175,10 @@
             width: 100%;
             background-color: transparent;
             color: #808080;
-            text-align: left; 
-            font-size: 13px; 
-            padding: 0px 37%; 
-            cursor: default; 
+            text-align: left;
+            font-size: 13px;
+            padding: 0px 37%;
+            cursor: default;
         }
 
         .version-number {
@@ -186,19 +186,19 @@
             bottom: 10px;
             right: 10px;
             color: #808080;
-            font-size: 12.0px; 
-            cursor: default; 
+            font-size: 12.0px;
+            cursor: default;
         }
-
     </style>
 </head>
+
 <body>
 
     <div id="loadingOverlay" class="loading-overlay">
         <div class="loading-text">loading...</div>
     </div>
 
-    <div class="version-number">V1.5.1 内测版</div>
+    <div class="version-number">V1.5.2 内测版</div>
 
     <div class="search-container">
         <h1 onclick="copyToClipboard()">学术文献搜索</h1>
@@ -234,130 +234,58 @@
     </div>
 
     <footer>
-        Copyright &copy 2023-2025 KentStudio. All rights reserved. 
+        Copyright &copy 2023-2025 KentStudio. All rights reserved.
     </footer>
 
-<script>
-    // 禁用右键菜单
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    });
+    <script>
 
-    // 页面加载完成后显示加载动画，1 秒后隐藏
-    window.addEventListener('load', function () {
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        loadingOverlay.style.display = 'flex';
-        setTimeout(function () {
-            loadingOverlay.style.display = 'none';
-        }, 1000);
-    });
-
-    // 处理搜索表单提交事件
-    document.getElementById('searchForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const searchText = document.getElementById('searchInput').value;
-        if (searchText.trim() === "") {
-            alert("请输入搜索内容！");
-            return;
-        }
-        const selectedWebsite = document.querySelector('input[name="website"]:checked').value;
-        const newUrl = `https://cn.bing.com/search?q=site:${selectedWebsite} ${searchText}`;
-        window.open(newUrl, '_blank');
-    });
-
-    // 复制链接到剪贴板
-    async function copyToClipboard() {
-        const textToCopy = "https://ethankent2007.github.io/";
-        try {
-            await navigator.clipboard.writeText(textToCopy);
-            alert("已复制本站链接到剪切板！快去分享吧~");
-        } catch (err) {
-            console.error('复制失败:', err);
-        }
-    }
-
-    // 禁用 F12、Ctrl+Shift+I 和 Ctrl+Shift+C 快捷键
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) || (e.ctrlKey && (e.key === 'u' || e.key === 'U'))) {
+        document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
-            window.location.href = 'error.html';
-        }
-    });
+        });
 
-    // 禁用右键菜单
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    });
+        window.addEventListener('load', function () {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.display = 'flex';
+            setTimeout(function () {
+                loadingOverlay.style.display = 'none';
+            }, 1000);
+        });
 
-    // 检测开发者工具是否打开
-    document.onkeydown = document.onkeyup = document.onkeypress = function (event) {
-        let userAgent = navigator.userAgent;
-        if (userAgent.indexOf("Firefox") > -1) {
-            let checkStatus;
-            let devtools = /./;
-            devtools.toString = function () {
-                checkStatus = "on";
-            };
-            setInterval(function () {
-                checkStatus = "off";
-                console.clear();
-                if (checkStatus === "on") {
-                    let target = "";
-                    try {
-                        window.open("about:blank", target = "_self");
-                    } catch (err) {
-                        let a = document.createElement("button");
-                        a.onclick = function () {
-                            window.open("about:blank", target = "_self");
-                        };
-                        a.click();
-                    }
-                }
-            }, 200);
-        } else {
-            let ConsoleManager = {
-                onOpen: function () {
-                    let target = "";
-                    try {
-                        window.open("about:blank", target = "_self");
-                    } catch (err) {
-                        let a = document.createElement("button");
-                        a.onclick = function () {
-                            window.open("about:blank", target = "_self");
-                        };
-                        a.click();
-                    }
-                },
-                onClose: function () {
-                },
-                init: function () {
-                    let self = this;
-                    let x = document.createElement("div");
-                    let isOpening = false;
-                    let isOpened = false;
-                    Object.defineProperty(x, "id", {
-                        get: function () {
-                            if (!isOpening) {
-                                self.onOpen();
-                                isOpening = true;
-                            }
-                            isOpened = true;
-                            return true;
-                        }
-                    });
-                    setInterval(function () {
-                        isOpened = false;
-                        if (!isOpened && isOpening) {
-                            self.onClose();
-                            isOpening = false;
-                        }
-                    }, 200);
-                }
-            };
-            ConsoleManager.init();
+        document.getElementById('searchForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const searchText = document.getElementById('searchInput').value;
+            if (searchText.trim() === "") {
+                alert("请输入搜索内容！");
+                return;
+            }
+            const selectedWebsite = document.querySelector('input[name="website"]:checked').value;
+            const newUrl = `https://cn.bing.com/search?q=site:${selectedWebsite} ${searchText}`;
+            window.open(newUrl, '_blank');
+        });
+
+        async function copyToClipboard() {
+            const textToCopy = "https://ethankent2007.github.io/";
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                alert("已复制本站链接到剪切板！快去分享吧~");
+            } catch (err) {
+                console.error('复制失败:', err);
+            }
         }
-    }; 
-</script>
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) || (e.ctrlKey && (e.key === 'u' || e.key === 'U'))) {
+                e.preventDefault();
+                window.location.href = 'error.html';
+            }
+        });
+
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+    </script>
 
 </body>
+
 </html>
